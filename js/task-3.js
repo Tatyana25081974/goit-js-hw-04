@@ -1,21 +1,27 @@
 
-function filterArray(numbers, value) {
-  // Створюємо порожній масив, у який будемо додавати підходящі числа
-  const result = [];
-  
-  // Використовуємо цикл для ітерації кожного елемента масиву numbers
-  for (let i = 0; i < numbers.length; i++) {
-    // Якщо поточне число більше за value, додаємо його до result
-    if (numbers[i] > value) {
-      result.push(numbers[i]);
-    }
+const profile = {
+  username: "Jacob",
+  playTime: 300,
+
+  // Метод для зміни імені профілю
+  changeUsername(newName) {
+    this.username = newName; // змінюємо ім'я користувача
+  },
+
+  // Метод для оновлення кількості годин у грі
+  updatePlayTime(hours) {
+    this.playTime += hours; // додаємо нові години до існуючих
+  },
+
+  // Метод для отримання інформації про профіль
+  getInfo() {
+    return `${this.username} has ${this.playTime} active hours!`; // повертаємо рядок з інформацією
   }
-  
-  // Повертаємо  свій новий масив з підходящими числами як результат.
-  return result;
-}
-console.log(filterArray([1, 2, 3, 4, 5], 3)); // [4, 5]
-console.log(filterArray([1, 2, 3, 4, 5], 4)); // [5]
-console.log(filterArray([1, 2, 3, 4, 5], 5)); // []
-console.log(filterArray([12, 24, 8, 41, 76], 38)); // [41, 76]
-console.log(filterArray([12, 24, 8, 41, 76], 20)); // [24, 41, 76]
+};
+console.log(profile.getInfo()); // "Jacob has 300 active hours!"
+
+profile.changeUsername("Marco");
+console.log(profile.getInfo()); // "Marco has 300 active hours!"
+
+profile.updatePlayTime(20);
+console.log(profile.getInfo()); // "Marco has 320 active hours!"
