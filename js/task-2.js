@@ -1,31 +1,49 @@
 
-function makeArray(firstArray, secondArray, maxLength) {
-  // Створюємо комбінований масив для зберігання елементів 
-  const combinedArray = [];
-
-  // Додаємо елементи з першого масиву
-  for (let i = 0; i < firstArray.length; i++) {
-    combinedArray.push(firstArray[i]);
-    // Якщо кількість елементів досягла maxLength, припиняємо додавати
-    if (combinedArray.length >= maxLength) {
-      return combinedArray;
-    }
+function calcAverageCalories(days) {
+  // Перевіряємо, чи масив days не порожній
+  if (days.length === 0) {
+    return 0;
   }
 
-  // Додаємо елементи з другого масиву
-  for (let i = 0; i < secondArray.length; i++) {
-    combinedArray.push(secondArray[i]);
-    // Якщо кількість елементів досягла maxLength, припиняємо додавати
-    if (combinedArray.length >= maxLength) {
-      return combinedArray;
-    }
+  // Ініціалізуємо змінну для накопичення сумарних калорій
+  let totalCalories = 0;
+
+  // Проходимо по кожному об'єкту в масиві days
+  for (let i = 0; i < days.length; i++) {
+    totalCalories += days[i].calories; // Додаємо калорії поточного дня
   }
 
-  //  повертаємо весь комбінований масив
-  return combinedArray;
+  // Обчислюємо середнє значення
+  const averageCalories = totalCalories / days.length;
+
+  return averageCalories;
 }
-console.log(makeArray([1, 2, 3], [4, 5, 6], 5)); // [1, 2, 3, 4, 5]
-console.log(makeArray([1, 2], [3, 4], 10)); // [1, 2, 3, 4]
-console.log(makeArray([1, 2, 3], [4, 5, 6], 3)); // [1, 2, 3]
-console.log(makeArray([], [4, 5, 6], 5)); // [4, 5, 6]
-console.log(makeArray([1, 2, 3], [], 2)); // [1, 2]
+
+console.log(
+  calcAverageCalories([
+    { day: "monday", calories: 3010 },
+    { day: "tuesday", calories: 3200 },
+    { day: "wednesday", calories: 3120 },
+    { day: "thursday", calories: 2900 },
+    { day: "friday", calories: 3450 },
+    { day: "saturday", calories: 3280 },
+    { day: "sunday", calories: 3300 }
+  ])
+); // 3180
+
+console.log(
+  calcAverageCalories([
+    { day: "monday", calories: 2040 },
+    { day: "tuesday", calories: 2270 },
+    { day: "wednesday", calories: 2420 },
+    { day: "thursday", calories: 1900 },
+    { day: "friday", calories: 2370 },
+    { day: "saturday", calories: 2280 },
+    { day: "sunday", calories: 2610 }
+  ])
+); // 2270
+
+console.log(
+  calcAverageCalories([])
+); // 0
+  
